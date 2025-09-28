@@ -1,0 +1,27 @@
+### INFO: https://www.meilisearch.com/docs/reference/api/documents
+
+
+### Fetches an example movies document
+
+GET https://milli-benchmarks.fra1.digitaloceanspaces.com/bench/datasets/movies.json HTTP/1.1
+Content-Type: application/json
+
+>>! /tmp/movies.json
+
+
+### Adds documents to an index
+
+PUT http://localhost:7700/indexes/movies/documents HTTP/1.1
+Content-Type: application/json
+
+< /tmp/movies.json
+
+
+### Search for a document
+
+POST http://localhost:7700/indexes/movies/search HTTP/1.1
+Content-Type: application/json
+
+{
+  "q": "charlie chaplin"
+}
