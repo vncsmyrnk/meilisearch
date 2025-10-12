@@ -8,7 +8,7 @@ permissions:
   packages: write
 
 jobs:
-  nix-build:
+  build:
     name: Builds Docker image via nix
     runs-on: ubuntu-latest
     steps:
@@ -41,3 +41,27 @@ jobs:
           docker tag $image_name "ghcr.io/${{ github.repository_owner }}/meilisearch-nix:$version_tag"
           docker tag $image_name "ghcr.io/${{ github.repository_owner }}/meilisearch-nix:latest"
           docker push --all-tags ghcr.io/${{ github.repository_owner }}/meilisearch-nix
+
+  dependency-scan:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generates SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/meilisearch-nix:latest
+          format: spdx-json
+          output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
+
+      - name: Scan SBOM
+        id: scan
+        uses: anchore/scan-action@v6
+        with:
+          sbom: "${{ github.event.repository.name }}-sbom.spdx.json"
+          output-format: json
+          fail-build: false
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: output-scan-json
+          path: ${{ steps.scan.outputs.json }}
