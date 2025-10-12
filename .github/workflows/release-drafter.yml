@@ -4,10 +4,11 @@ permissions:
   contents: read
   pull-requests: write
 
-on:
-  push:
-    branches:
-      - main
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   push:
+#     branches:
+#       - main
 
 jobs:
   update_release_draft:

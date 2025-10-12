@@ -1,9 +1,10 @@
 name: Benchmarks of search for Wikipedia articles (push)
 
-on:
-  push:
-    branches:
-      - main
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   push:
+#     branches:
+#       - main
 
 env:
   BENCH_NAME: "search_wiki"

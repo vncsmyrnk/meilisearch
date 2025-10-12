@@ -1,7 +1,8 @@
 name: Bench (PR)
-on:
-  issue_comment:
-    types: [created]
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   issue_comment:
+#     types: [created]
 
 permissions:
   issues: write

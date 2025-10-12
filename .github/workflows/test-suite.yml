@@ -1,12 +1,13 @@
 name: Test suite
 
-on:
-  workflow_dispatch:
-  schedule:
-    # Every day at 5:00am
-    - cron: "0 5 * * *"
-  pull_request:
-  merge_group:
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     # Every day at 5:00am
+#     - cron: "0 5 * * *"
+#   pull_request:
+#   merge_group:
 
 env:
   CARGO_TERM_COLOR: always

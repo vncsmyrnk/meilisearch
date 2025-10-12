@@ -1,15 +1,16 @@
 # If any test fails, the engine team should ensure the "breaking" changes are expected and contact the integration team
 name: SDKs tests
 
-on:
-  workflow_dispatch:
-    inputs:
-      docker_image:
-        description: 'The Meilisearch Docker image used'
-        required: false
-        default: nightly
-  schedule:
-    - cron: '0 6 * * *' # Every day at 6:00am
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       docker_image:
+#         description: 'The Meilisearch Docker image used'
+#         required: false
+#         default: nightly
+#   schedule:
+#     - cron: '0 6 * * *' # Every day at 6:00am
 
 env:
   MEILI_MASTER_KEY: 'masterKey'

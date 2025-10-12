@@ -1,11 +1,12 @@
 name: Publish assets to GitHub release
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 2 * * *" # Every day at 2:00am
-  release:
-    types: [published]
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: "0 2 * * *" # Every day at 2:00am
+#   release:
+#     types: [published]
 
 jobs:
   check-version:
