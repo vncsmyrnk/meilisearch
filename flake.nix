@@ -6,10 +6,23 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
 
       cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
       version = cargoToml.workspace.package.version;
+
+      # This overlay robustly fixes the 'tini' package build issue.
+      # INFO: This is a temporarily solution to fix CMake compatibility issues
+      # This should be fixed upstream soon
+      tini-fix-overlay = final: prev: {
+        tini = prev.tini.overrideAttrs (oldAttrs: {
+          cmakeFlags = [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.15" ];
+        });
+      };
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ tini-fix-overlay ];
+      };
 
       # Build arguments that can be overridden
       commitSha = builtins.getEnv "COMMIT_SHA";
