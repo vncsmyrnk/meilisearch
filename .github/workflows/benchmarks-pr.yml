@@ -1,5 +1,8 @@
 name: Benchmarks (PR)
-on: issue_comment
+
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on: issue_comment
+
 permissions:
   issues: write
 

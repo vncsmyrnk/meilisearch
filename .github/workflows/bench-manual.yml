@@ -1,12 +1,13 @@
 name: Bench (manual)
 
-on:
-  workflow_dispatch:
-    inputs:
-      workload:
-        description: "The path to the workloads to execute (workloads/...)"
-        required: true
-        default: "workloads/movies.json"
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       workload:
+#         description: "The path to the workloads to execute (workloads/...)"
+#         required: true
+#         default: "workloads/movies.json"
 
 env:
   WORKLOAD_NAME: ${{ github.event.inputs.workload }}

@@ -1,12 +1,13 @@
 name: Benchmarks (manual)
 
-on:
-  workflow_dispatch:
-    inputs:
-      dataset_name:
-        description: "The name of the dataset used to benchmark (search_songs, search_wiki, search_geo or indexing)"
-        required: false
-        default: "search_songs"
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       dataset_name:
+#         description: "The name of the dataset used to benchmark (search_songs, search_wiki, search_geo or indexing)"
+#         required: false
+#         default: "search_songs"
 
 env:
   BENCH_NAME: ${{ github.event.inputs.dataset_name }}

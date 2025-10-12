@@ -1,8 +1,9 @@
 name: Publish to APT & Homebrew
 
-on:
-  release:
-    types: [released]
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   release:
+#     types: [released]
 
 jobs:
   check-version:

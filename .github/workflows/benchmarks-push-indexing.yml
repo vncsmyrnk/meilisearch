@@ -1,9 +1,10 @@
 name: Benchmarks of indexing (push)
 
-on:
-  push:
-    branches:
-      - main
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   push:
+#     branches:
+#       - main
 
 env:
   INFLUX_TOKEN: ${{ secrets.INFLUX_TOKEN }}

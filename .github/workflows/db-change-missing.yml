@@ -1,8 +1,9 @@
 name: Check db change labels
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened, labeled, unlabeled]
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened, labeled, unlabeled]
 
 jobs:
   check-labels:

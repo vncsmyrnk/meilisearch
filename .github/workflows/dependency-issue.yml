@@ -1,10 +1,11 @@
 name: Create issue to upgrade dependencies
 
-on:
-  schedule:
-    # Run the first of the month, every 6 month
-    - cron: '0 0 1 */6 *'
-  workflow_dispatch:
+# DISABLED: Uncomment the section below to re-enable this workflow
+# on:
+#   schedule:
+#     # Run the first of the month, every 6 month
+#     - cron: '0 0 1 */6 *'
+#   workflow_dispatch:
 
 jobs:
   create-issue:
