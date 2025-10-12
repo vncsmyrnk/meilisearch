@@ -32,3 +32,7 @@ crates/milli/fuzz/update::facet::incremental::fuzz::fuzz/
 
 # Nix builds
 result
+
+# SBOMs
+*.sbom.json
+*.spdx.json

@@ -17,3 +17,19 @@ run-nix-docker-build:
   docker run -it --rm \
     -p 7700:7700 \
     meilisearch-local-nix:latest
+
+generate-sboms:
+  syft ghcr.io/vncsmyrnk/meilisearch-nix:latest -o spdx-json | jq > /tmp/meilisearch-nix-sbom.spdx.json
+  syft ghcr.io/vncsmyrnk/meilisearch-traditional:latest -o spdx-json | jq > /tmp/meilisearch-traditional-sbom.spdx.json
+
+scan-vulnerabilities: generate-sboms
+  @echo 'Scanning the nix built image...'
+  cat /tmp/meilisearch-nix-sbom.spdx.json | grype
+  @echo 'Now scanning the traditional built one...'
+  cat /tmp/meilisearch-traditional-sbom.spdx.json | grype
+
+dependency-count:
+  @echo 'Evaluating the nix SBOM...'
+  jq '.packages[] | select((.sourceInfo // "") | contains("rust cargo") | not) | .name' -r /tmp/meilisearch-nix-sbom.spdx.json | sort --unique | wc -l
+  @echo 'Evaluating the traditional built SBOM...'
+  jq '.packages[] | select((.sourceInfo // "") | contains("rust cargo") | not) | .name' -r /tmp/meilisearch-traditional-sbom.spdx.json | sort --unique | wc -l
